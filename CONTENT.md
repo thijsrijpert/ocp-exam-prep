@@ -233,7 +233,7 @@ CyclicBarrier(int limit, Runnable r)
 
 It triggers a barrier with the `await()` method.
 
-### Table 13.9
+### Table 13.9 (ConcurrentCollections)
 
 | Class                 | Interface                                                           | Sorted | Blocking |
 |-----------------------|---------------------------------------------------------------------|--------|----------|
@@ -245,7 +245,7 @@ It triggers a barrier with the `await()` method.
 | CopyOnWriteArraySet   | Set                                                                 | No     | No       |
 | LinkedBlockingQueue   | Queue, BlockingQueue                                                | No     | Yes      |
 
-### Table 13.10
+### Table 13.10 (Collections)
 
 | Method                                   |
 |------------------------------------------|
@@ -259,6 +259,98 @@ It triggers a barrier with the `await()` method.
 | synchronizedSortedMap(SortedMap m)       |
 
 
+## Chapter 14 (I/O)
+
+### File
+
+| Method                            | Description                                                 |
+|-----------------------------------|-------------------------------------------------------------|
+| File(String path)                 | Constructor, does not create file only a reference          |
+| File(String parent, String child) | Constructor, does not create file only a reference          |
+| File(File parent, String child)   | Constructor, does not create file only a reference          |
+| String getName()                  | Gets the name of the file or directory, without the parent  |
+| String getParent()                | Gets the parent directory or null if there is none          |
+| boolean isAbsolute()              | Checks if the path is absolute                              |
+| String getAbsolutePath()          | Converts the relative path to absolute path if not already  |
+| boolean delete()                  | Deletes file or directory                                   |
+| boolean exists()                  | Checks if the file exists                                   |
+| boolean isDirectory()             | Checks if the file is a directory                           |
+| boolean isFile()                  | Checks if the file is a file                                |
+| long lastModified()               | Gets the last modified date in milliseconds since the epoch |
+| long length()                     | Retrieves the number of bytes in a file                     |
+| File[] listFiles()                | Lists the contents of a directory                           |
+| boolean mkdir()                   | Creates directory                                           |
+| boolean mkdirs()                  | Creates directories recursively                             |
+| boolean renameTo(File f)          | Creates directories recursively                             |
+| Path toPath()                     | Converts the file object to a path                          |
+
+
+### Path
+
+| Method                                            | Description                                                              |
+|---------------------------------------------------|--------------------------------------------------------------------------|
+| static Path Path.of(String first, String... more) | Constructor, does not create file only a reference                       |
+| static Path Path.of(URI uri)                      | Constructor, does not create file only a reference                       |
+| File Path.toFile()                                | Converts the path object to a (legacy) file                              |
+| Path getFileName()                                | Gets the name of the file or directory, without the parent               |
+| Path getParent()                                  | Gets the parent directory or null if there is none                       |
+| boolean isAbsolute()                              | Checks if the path is absolute                                           |
+| Path toAbsolutePath()                             | Converts the relative path to absolute path if not already               |
+| String toString()                                 | Converts the path to string                                              |
+| Path getName(int index)                           | Get a single segment                                                     |
+| int getNameCount()                                | Get the number of segments                                               |
+| Path subpath(int beginIndex, int endIndex)        | Get the segments between beginIndex (inclusive) and endIndex (exclusive) |
+| Path getRoot()                                    | Get the top level segment (c:/ on Windows) (/ on linux)                  |
+| Path resolve(String p)                            | Concat the parameter to the path                                         |
+| Path resolve(Path p)                              | Concat the parameter to the path                                         |
+| Path relativize(Path p)                           | Create a relative path from the path to the parameter                    |
+| Path normalize()                                  | Remove redundant parts of the path                                       |
+| Path toRealPath()                                 | Resolves symbolic links to find the actual path object                   |
+
+### Files (All Static)
+
+| Method                                                                   | Description                                                                    |
+|--------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| boolean deleteIfExists(Path p) throws IOException                        | Deletes the file or directory if it exists, returns false if it does not exist |
+| void delete(Path p) throws IOException                                   | Same as above, but throws NoSuchFileException if file does not exist           |
+| boolean exists(Path p, LinkOption... o)                                  | Checks if the file exists                                                      |
+| boolean isDirectory(Path p, LinkOption... o)                             | Checks if the path points to a directory                                       |
+| boolean isRegularFile(Path p, LinkOption... o)                           | Checks if the path points to a file                                            |
+| FileTime getLastModifiedTime(Path p, LinkOption... o) throws IOException | Gets the time since it was last modified                                       |
+| long size(Path p) throws IOException                                     | Gets the number of bytes in a file                                             |
+| Steam<Path> list(Path p) throws IOException                              | Gets a stream of the content in the directory                                  |
+| Path createDirectory(Path p, FileAttribute... a) throws IOException      | Creates the directory                                                          |
+| Path createDirectories(Path p, FileAttribute... a) throws IOException    | Creates the directory, recursively                                             |
+| Path move(Path src, Path dest, CopyOption... o) throws IOException       | Renames the file                                                               |
+
+### Optional Parameters
+
+#### LinkOption
+
+Interfaces: `CopyOption`, `OpenOption`  
+`NOFOLLOW_LINKS`: Do not follow symbolic links  
+
+#### StandardCopyOption
+
+Interfaces: `CopyOption`  
+`ATOMIC_MOVE`: Move file as atomic operation
+`COPY_ATTRIBUTES`: Copy file attributes to new file
+`REPLACE_EXISTING`: Overwrite file if it exists
+
+#### StandardOpenOption
+
+Interfaces: `OpenOption`   
+`APPEND`: If the file is open for write, append  
+`CREATE`: Create new file if it does not exist  
+`CREATE_NEW`: Create new file only if it does not exist; fail if the file exists  
+`READ`: Open for read access  
+`TRUNCATE_EXISTING`: If file is already open for write, truncate length to 0, append to the beginning  
+`WRITE`: Open for write access
+
+#### FileVisitOption
+
+Interfaces: None
+`FOLLOW_LINKS`: Follow symbolic links
 
 
 
