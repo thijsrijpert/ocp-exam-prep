@@ -94,19 +94,35 @@ Overview of the tables you should know for the OCP Java exam
 
 ### Table 10.10
 
-| Collector                                        | Notes                                                                                                                                                             | Return value when passed to collect |
-|--------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
-| averagingDouble(ToDoubleFunction f)              | Calculate average                                                                                                                                                 | Double                              |
-| averagingInt(TIntFunction f)                     | Calculate average                                                                                                                                                 | Double                              |
-| averagingLong(ToLongFunction f)                  | Calculate average                                                                                                                                                 | Double                              |
-| counting()                                       | Counts number of elements                                                                                                                                         | Long                                |
-| filtering(Predicate p, Collector c)              | Filters before running the downstream collector                                                                                                                   | R                                   |
-| groupingBy(Function f)                           | Creates a Map with List as value grouping the values by the result of the function                                                                                | Map<K, List<T>                      |
-| groupingBy(Function f, Collector dc)             | Creates a Map grouping the values by the result of the function. Uses the dc to determine the value (eg. use set vs list vs concat)                               | Map<K, T>                           |
-| groupingBy(Function f, Supplier s, Collector dc) | Creates a Map grouping the values by the result of the function. Use s to set the type of map. Uses the dc to determine the value (eg. use set vs list vs concat) | Map<K, T>                           |
-| joining(CharSequence cs)                         | Creates a single string using a delimiter specified in cs.                                                                                                        | String                              |
-| maxBy(Comparator c)                              | Find the largest element                                                                                                                                          | Optional                            |
-| minBy(Comparator c)                              | Find the smallest element                                                                                                                                         | Optional                            |
+| Collector                                                   | Notes                                                                                                                                                             | Return value when passed to collect |
+|-------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| averagingDouble(ToDoubleFunction f)                         | Calculate average                                                                                                                                                 | Double                              |
+| averagingInt(TIntFunction f)                                | Calculate average                                                                                                                                                 | Double                              |
+| averagingLong(ToLongFunction f)                             | Calculate average                                                                                                                                                 | Double                              |
+| counting()                                                  | Counts number of elements                                                                                                                                         | Long                                |
+| filtering(Predicate p, Collector c)                         | Filters before running the downstream collector                                                                                                                   | R                                   |
+| groupingBy(Function f)                                      | Creates a Map with List as value grouping the values by the result of the function                                                                                | Map<K, List<T>>                     |
+| groupingBy(Function f, Collector dc)                        | Creates a Map grouping the values by the result of the function. Uses the dc to determine the value (eg. use set vs list vs concat)                               | Map<K, T>                           |
+| groupingBy(Function f, Supplier s, Collector dc)            | Creates a Map grouping the values by the result of the function. Use s to set the type of map. Uses the dc to determine the value (eg. use set vs list vs concat) | Map<K, T>                           |
+| joining(CharSequence cs)                                    | Creates a single string using a delimiter specified in cs.                                                                                                        | String                              |
+| maxBy(Comparator c)                                         | Find the largest element                                                                                                                                          | Optional                            |
+| minBy(Comparator c)                                         | Find the smallest element                                                                                                                                         | Optional                            |
+| mapping(Function f, Collector dc)                           | Adds another level of collectors                                                                                                                                  | Collector                           |
+| partitioningBy(Predicate p)                                 | Creates map grouping by specified predicate                                                                                                                       | Map<Boolean, List<T>>               |
+| partitioningBy(Predicate p, Collector dc)                   | Creates map grouping by specified predicate. Uses the dc to determine the value (eg. use set vs list vs concat)                                                   | Map<Boolean, T>                     |
+| summarizingDouble(ToDoubleFunction f)                       | Calculate the statistics of this stream (eg. min, max, sum, count)                                                                                                | DoubleSummaryStatistics             |
+| summarizingInt(ToIntFunction f)                             | Calculate the statistics of this stream (eg. min, max, sum, count)                                                                                                | IntSummaryStatistics                |
+| summarizingLong(ToLongFunction f)                           | Calculate the statistics of this stream (eg. min, max, sum, count)                                                                                                | LongSummaryStatistics               |
+| summingDouble(ToDoubleFunction f)                           | Calculate the sum of the contents of this stream                                                                                                                  | Double                              |
+| summingInt(ToIntFunction f)                                 | Calculate the sum of the contents of this stream                                                                                                                  | Integer                             |
+| summingLong(ToLongFunction f)                               | Calculate the sum of the contents of this stream                                                                                                                  | Long                                |
+| teeing(Collector c1, Collector c2, BiFunction f)            | Both Collectors are executed for all stream values, after the BiFunction is called to merge the two results                                                       | R                                   |
+| toList()                                                    | Creates a List                                                                                                                                                    | List                                |
+| toSet()                                                     | Creates a Set                                                                                                                                                     | Set                                 |
+| toCollection(Supplier s)                                    | Creates a Collection of specified type                                                                                                                            | Collection                          |
+| toMap(Function k, Function v)                               | Use function k to determine the key, and function v to determine the value                                                                                        | Map<K, V>                           |
+| toMap(Function k, Function v, BinaryOperator m)             | Use function k to determine the key, and function v to determine the value. Use operator m to resolve duplicates                                                  | Map<K, V>                           |
+| toMap(Function k, Function v, BinaryOperator m, Supplier s) | Use function k to determine the key, and function v to determine the value. Use operator m to resolve duplicates. Use supplier s to set the type of map used.     | Map<K, V>                           |
 
 ## Chapter 13
 
@@ -217,7 +233,7 @@ CyclicBarrier(int limit, Runnable r)
 
 It triggers a barrier with the `await()` method.
 
-### Table 13.9
+### Table 13.9 (ConcurrentCollections)
 
 | Class                 | Interface                                                           | Sorted | Blocking |
 |-----------------------|---------------------------------------------------------------------|--------|----------|
@@ -229,7 +245,7 @@ It triggers a barrier with the `await()` method.
 | CopyOnWriteArraySet   | Set                                                                 | No     | No       |
 | LinkedBlockingQueue   | Queue, BlockingQueue                                                | No     | Yes      |
 
-### Table 13.10
+### Table 13.10 (Collections)
 
 | Method                                   |
 |------------------------------------------|
@@ -243,6 +259,123 @@ It triggers a barrier with the `await()` method.
 | synchronizedSortedMap(SortedMap m)       |
 
 
+## Chapter 14 (I/O)
+
+### File
+
+| Method                            | Description                                                 |
+|-----------------------------------|-------------------------------------------------------------|
+| File(String path)                 | Constructor, does not create file only a reference          |
+| File(String parent, String child) | Constructor, does not create file only a reference          |
+| File(File parent, String child)   | Constructor, does not create file only a reference          |
+| String getName()                  | Gets the name of the file or directory, without the parent  |
+| String getParent()                | Gets the parent directory or null if there is none          |
+| boolean isAbsolute()              | Checks if the path is absolute                              |
+| String getAbsolutePath()          | Converts the relative path to absolute path if not already  |
+| boolean delete()                  | Deletes file or directory                                   |
+| boolean exists()                  | Checks if the file exists                                   |
+| boolean isDirectory()             | Checks if the file is a directory                           |
+| boolean isFile()                  | Checks if the file is a file                                |
+| long lastModified()               | Gets the last modified date in milliseconds since the epoch |
+| long length()                     | Retrieves the number of bytes in a file                     |
+| File[] listFiles()                | Lists the contents of a directory                           |
+| boolean mkdir()                   | Creates directory                                           |
+| boolean mkdirs()                  | Creates directories recursively                             |
+| boolean renameTo(File f)          | Creates directories recursively                             |
+| Path toPath()                     | Converts the file object to a path                          |
+
+
+### Path
+
+| Method                                            | Description                                                              |
+|---------------------------------------------------|--------------------------------------------------------------------------|
+| static Path Path.of(String first, String... more) | Constructor, does not create file only a reference                       |
+| static Path Path.of(URI uri)                      | Constructor, does not create file only a reference                       |
+| File Path.toFile()                                | Converts the path object to a (legacy) file                              |
+| Path getFileName()                                | Gets the name of the file or directory, without the parent               |
+| Path getParent()                                  | Gets the parent directory or null if there is none                       |
+| boolean isAbsolute()                              | Checks if the path is absolute                                           |
+| Path toAbsolutePath()                             | Converts the relative path to absolute path if not already               |
+| String toString()                                 | Converts the path to string                                              |
+| Path getName(int index)                           | Get a single segment                                                     |
+| int getNameCount()                                | Get the number of segments                                               |
+| Path subpath(int beginIndex, int endIndex)        | Get the segments between beginIndex (inclusive) and endIndex (exclusive) |
+| Path getRoot()                                    | Get the top level segment (c:/ on Windows) (/ on linux)                  |
+| Path resolve(String p)                            | Concat the parameter to the path                                         |
+| Path resolve(Path p)                              | Concat the parameter to the path                                         |
+| Path relativize(Path p)                           | Create a relative path from the path to the parameter                    |
+| Path normalize()                                  | Remove redundant parts of the path                                       |
+| Path toRealPath()                                 | Resolves symbolic links to find the actual path object                   |
+
+### Files (All Static)
+
+| Method                                                                     | Description                                                                                                                                          |
+|----------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| boolean deleteIfExists(Path p) throws IOException                          | Deletes the file or directory if it exists, returns false if it does not exist                                                                       |
+| void delete(Path p) throws IOException                                     | Same as above, but throws NoSuchFileException if file does not exist                                                                                 |
+| boolean exists(Path p, LinkOption... o)                                    | Checks if the file exists                                                                                                                            |
+| boolean isDirectory(Path p, LinkOption... o)                               | Checks if the path points to a directory                                                                                                             |
+| boolean isRegularFile(Path p, LinkOption... o)                             | Checks if the path points to a file                                                                                                                  |
+| FileTime getLastModifiedTime(Path p, LinkOption... o) throws IOException   | Gets the time since it was last modified                                                                                                             |
+| long size(Path p) throws IOException                                       | Gets the number of bytes in a file                                                                                                                   |
+| Steam<Path> list(Path p) throws IOException                                | Gets a stream of the content in the directory                                                                                                        |
+| Path createDirectory(Path p, FileAttribute... a) throws IOException        | Creates the directory                                                                                                                                |
+| Path createDirectories(Path p, FileAttribute... a) throws IOException      | Creates the directory, recursively                                                                                                                   |
+| Path move(Path src, Path dest, CopyOption... o) throws IOException         | Renames the file                                                                                                                                     |
+| Path copy(Path src, Path dest, CopyOption... o) throws IOException         | Copies the file, not recursive                                                                                                                       |
+| Path copy(InputStream src, Path dest, CopyOption... o) throws IOException  | Copies the file, not recursive                                                                                                                       |
+| Path copy(Path src, OutputStream dest, CopyOption... o) throws IOException | Copies the file, not recursive                                                                                                                       |
+| boolean isSameFile(Path src, Path dest) throws IOException                 | Checks if two files are physically the same. Throws exception if one of the two files do not exists, but always returns true if both paths are equal |
+| int mismatch(Path src, Path dest) throws IOException                       | Returns -1 if the file contents are the same, returns the first index where the files differ if they mismatch                                        |
+
+
+
+### Optional Parameters
+
+#### LinkOption
+
+Interfaces: `CopyOption`, `OpenOption`  
+`NOFOLLOW_LINKS`: Do not follow symbolic links  
+
+#### StandardCopyOption
+
+Interfaces: `CopyOption`  
+`ATOMIC_MOVE`: Move file as atomic operation
+`COPY_ATTRIBUTES`: Copy file attributes to new file
+`REPLACE_EXISTING`: Overwrite file if it exists
+
+#### StandardOpenOption
+
+Interfaces: `OpenOption`   
+`APPEND`: If the file is open for write, append  
+`CREATE`: Create new file if it does not exist  
+`CREATE_NEW`: Create new file only if it does not exist; fail if the file exists  
+`READ`: Open for read access  
+`TRUNCATE_EXISTING`: If file is already open for write, truncate length to 0, append to the beginning  
+`WRITE`: Open for write access
+
+#### FileVisitOption
+
+Interfaces: None
+`FOLLOW_LINKS`: Follow symbolic links
+
+
+### File streams
+
+| Class                | Level  | Description                                                          |
+|----------------------|--------|----------------------------------------------------------------------|
+| FileInputStream      | Low    | Reads bytes from file                                                |
+| FileOutputStream     | Low    | Writes bytes to file                                                 |
+| FileReader           | Low    | Reads chars from file                                                |
+| FileWriter           | Low    | Writes chars to file                                                 |
+| BufferedInputStream  | High   | Reads bytes from file, buffers input to increase efficiency          |
+| BufferedOutputStream | High   | Writes bytes to file, buffers output to increase efficiency          |
+| BufferedReader       | High   | Reads chars from file, buffers input to increase efficiency          |
+| BufferedWriter       | High   | Writes chars to file, buffers output to increase efficiency          |
+| ObjectInputStream    | High   | Deserializes Java primitives and object types from input stream      |
+| ObjectOutputStream   | High   | Serializes Java primitives and object types to output stream         |
+| PrintStream          | High   | Writes formatted representations of Java objects to binary stream    |
+| PrintWriter          | High   | Writes formatted representations of Java objects to character stream |
 
 
 
