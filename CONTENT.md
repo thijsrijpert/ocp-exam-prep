@@ -2,6 +2,115 @@
 
 Overview of the tables you should know for the OCP Java exam
 
+<!-- TOC -->
+* [Oracle Certified Professional Java SE 17 Developer Tables](#oracle-certified-professional-java-se-17-developer-tables)
+  * [Chapter 4](#chapter-4)
+    * [String](#string)
+    * [Format characters](#format-characters)
+    * [StringBuilder](#stringbuilder)
+  * [Chapter 10](#chapter-10)
+    * [Table 10.1](#table-101)
+    * [Table 10.3](#table-103)
+    * [Table 10.4](#table-104)
+    * [Table 10.5](#table-105)
+    * [Table 10.6 / 10.7](#table-106--107)
+    * [Table 10.9](#table-109)
+    * [Table 10.10](#table-1010)
+  * [Chapter 13](#chapter-13)
+    * [Runnable](#runnable)
+    * [Callable](#callable)
+    * [Table 13.1 (Executor Service)](#table-131-executor-service)
+    * [Table 13.2 (Future)](#table-132-future)
+    * [Table 13.3 (TimeUnit)](#table-133-timeunit)
+    * [Table 13.4 (ScheduledExecutorService)](#table-134-scheduledexecutorservice)
+    * [Table 13.5 (Executors)](#table-135-executors)
+    * [Table 13.7 (Atomic)](#table-137-atomic)
+    * [Table 13.8 (Locking)](#table-138-locking)
+    * [Table 13.9 (ConcurrentCollections)](#table-139-concurrentcollections)
+    * [Table 13.10 (Collections)](#table-1310-collections)
+  * [Chapter 14 (I/O)](#chapter-14-io)
+    * [File](#file)
+    * [Path](#path)
+    * [Files (All Static)](#files-all-static)
+    * [Optional Parameters](#optional-parameters)
+      * [LinkOption](#linkoption)
+      * [StandardCopyOption](#standardcopyoption)
+      * [StandardOpenOption](#standardopenoption)
+      * [FileVisitOption](#filevisitoption)
+    * [File streams](#file-streams)
+    * [InputStream](#inputstream)
+    * [Reader](#reader)
+    * [OutputStream](#outputstream)
+    * [Writer](#writer)
+    * [Buffered](#buffered)
+    * [ObjectStreams](#objectstreams)
+<!-- TOC -->
+
+## Chapter 4
+
+### String
+
+| Method                                                 | Description                                                                                                                                                                                                               |
+|--------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| int length()                                           | Gets the length of the string                                                                                                                                                                                             |
+| char charAt(int i)                                     | Gets the char at a specific position                                                                                                                                                                                      |
+| int indexOf(int ch)                                    | Gets the first index of the char                                                                                                                                                                                          |
+| int indexOf(int ch, int fromIndex)                     | Gets the first index of the char, starting at fromIndex                                                                                                                                                                   |
+| int indexOf(String str)                                | Gets the first index of the string. Returns the first index of the matching string. So test.indexOf("es") returns 1                                                                                                       |
+| int indexOf(String str, int fromIndex)                 | Gets the first index of the string,  starting at fromIndex. Returns the first index of the matching string. So test.indexOf("es") returns 1                                                                               |
+| String substring(int beginIndex)                       | Gets a substring, starting at the beginIndex (inclusive)                                                                                                                                                                  |
+| String substring(int beginIndex, int endIndex)         | Gets a substring, starting at the beginIndex (inclusive), ending at endIndex (exclusive)                                                                                                                                  |
+| String toUpperCase()                                   | Converts the string to uppercase letters                                                                                                                                                                                  |
+| String toLowerCase()                                   | Converts the string to lowercase letters                                                                                                                                                                                  |
+| boolean equalsIgnoreCase(String str)                   | Checks if the strings are equal ignoring the case                                                                                                                                                                         |
+| boolean startsWith(String prefix)                      | Checks if the string starts with prefix                                                                                                                                                                                   |
+| boolean endsWith(String suffix)                        | Checks if the string ends with suffix                                                                                                                                                                                     |
+| boolean contains(CharSequence charSeq)                 | Checks if the string contains the supplied sequence                                                                                                                                                                       |
+| String replace(char old, char new)                     | Replaces all occurrences of a char with another char                                                                                                                                                                      |
+| String replace(CharSequence old, CharSequence new)     | Replaces all occurrences of a sequence with another sequence                                                                                                                                                              |
+| String trim()                                          | Removes whitespace from the start and end of string ( \t, \n and \r are also included)                                                                                                                                    |
+| String strip()                                         | Same as trim() but with unicode support                                                                                                                                                                                   |
+| String stripLeading()                                  | Same as strip(), but only removes from the beginning                                                                                                                                                                      |
+| String stripTrailing()                                 | Same as strip(), but only removes from the end                                                                                                                                                                            |
+| String indent(int i)                                   | Adds i amount of spaces to the beginning of each line. Negative values mean i amount of spaces are removed from the beginning of each line. It also changes all line breaks to \n and adds an \n to the end of the string |
+| String stripIndent()                                   | Removes all incidental whitespace, so the same amount of whitespace characters are removed from the string. It also changes all line breaks to \n.                                                                        |
+| String translateEscapes()                              | Removes the extra backslash from escaped escape characters so that the escape character is actually used.                                                                                                                 |
+| boolean isEmpty()                                      | Checks if the string is truly empty, no whitespace allowed                                                                                                                                                                |
+| boolean isBlank()                                      | Checks if the string is empty or only contains whitespace characters                                                                                                                                                      |
+| static format(String format, Object... args)           | Replaces format characters with the supplied arguments                                                                                                                                                                    |
+| static format(Locale l, String format, Object... args) | Replaces format characters with the supplied arguments                                                                                                                                                                    |
+| formatted(Object... args)                              | Replaces format characters with the supplied arguments                                                                                                                                                                    |
+
+### Format characters
+
+| Format char | Description                                            |
+|-------------|--------------------------------------------------------|
+| %s          | Any type, commonly String                              |
+| %d          | Any integer like value, such as int or long            |
+| %f          | Any floating point like value, such as float or double |
+| %n          | Adds linebreak                                         |
+
+Using the wrong format char results in a IllegalFormatConversionException
+
+### StringBuilder
+
+The StringBuilder has four constructors empty, with supplied String / CharSequence or with an initial capacity.
+
+| Method                                                     | Description                                                                                                                                                    |
+|------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| SB append(String s)                                        | StringBuilder has a large amount of append methods for all sorts of data types. It uses String.valueOf() if it cannot be appended directly                     |
+| SB insert(int offset, String str)                          | Inserts a string (or another object like append) into the specified offset                                                                                     |
+| SB delete(int startIndex, int endIndex)                    | Deletes the chars starting at startIndex (inclusive) and ending at endIndex (exclusive). Does not throw an exception if the endIndex is larger than the length |
+| SB deleteCharAt(int index)                                 | Deletes the char at the specified position                                                                                                                     |
+| SB replace(int startIndex, int endIndex, String newString) | This method first executes a delete and then inserts the newString at the old position                                                                         |
+| SB reverse()                                               | Reverses the string                                                                                                                                            |
+| int length()                                               | Gets the length of the string                                                                                                                                  |
+| char charAt(int i)                                         | Gets the char at a specific position                                                                                                                           | 
+| int indexOf(String str)                                    | Gets the first index of the string. Returns the first index of the matching string. So test.indexOf("es") returns 1                                            |
+| int indexOf(String str, int fromIndex)                     | Gets the first index of the string,  starting at fromIndex. Returns the first index of the matching string. So test.indexOf("es") returns 1                    |
+| String substring(int beginIndex)                           | Gets a substring, starting at the beginIndex (inclusive)                                                                                                       |
+| String substring(int beginIndex, int endIndex)             | Gets a substring, starting at the beginIndex (inclusive), ending at endIndex (exclusive)                                                                       |
+
 ## Chapter 10
 
 ### Table 10.1
@@ -309,24 +418,43 @@ It triggers a barrier with the `await()` method.
 
 ### Files (All Static)
 
-| Method                                                                     | Description                                                                                                                                          |
-|----------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| boolean deleteIfExists(Path p) throws IOException                          | Deletes the file or directory if it exists, returns false if it does not exist                                                                       |
-| void delete(Path p) throws IOException                                     | Same as above, but throws NoSuchFileException if file does not exist                                                                                 |
-| boolean exists(Path p, LinkOption... o)                                    | Checks if the file exists                                                                                                                            |
-| boolean isDirectory(Path p, LinkOption... o)                               | Checks if the path points to a directory                                                                                                             |
-| boolean isRegularFile(Path p, LinkOption... o)                             | Checks if the path points to a file                                                                                                                  |
-| FileTime getLastModifiedTime(Path p, LinkOption... o) throws IOException   | Gets the time since it was last modified                                                                                                             |
-| long size(Path p) throws IOException                                       | Gets the number of bytes in a file                                                                                                                   |
-| Steam<Path> list(Path p) throws IOException                                | Gets a stream of the content in the directory                                                                                                        |
-| Path createDirectory(Path p, FileAttribute... a) throws IOException        | Creates the directory                                                                                                                                |
-| Path createDirectories(Path p, FileAttribute... a) throws IOException      | Creates the directory, recursively                                                                                                                   |
-| Path move(Path src, Path dest, CopyOption... o) throws IOException         | Renames the file                                                                                                                                     |
-| Path copy(Path src, Path dest, CopyOption... o) throws IOException         | Copies the file, not recursive                                                                                                                       |
-| Path copy(InputStream src, Path dest, CopyOption... o) throws IOException  | Copies the file, not recursive                                                                                                                       |
-| Path copy(Path src, OutputStream dest, CopyOption... o) throws IOException | Copies the file, not recursive                                                                                                                       |
-| boolean isSameFile(Path src, Path dest) throws IOException                 | Checks if two files are physically the same. Throws exception if one of the two files do not exists, but always returns true if both paths are equal |
-| int mismatch(Path src, Path dest) throws IOException                       | Returns -1 if the file contents are the same, returns the first index where the files differ if they mismatch                                        |
+| Method                                                                                                                    | Description                                                                                                                                                                                                                                                                                       |
+|---------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| boolean deleteIfExists(Path p) throws IOException                                                                         | Deletes the file or directory if it exists, returns false if it does not exist                                                                                                                                                                                                                    |
+| void delete(Path p) throws IOException                                                                                    | Same as above, but throws NoSuchFileException if file does not exist                                                                                                                                                                                                                              |
+| boolean exists(Path p, LinkOption... o)                                                                                   | Checks if the file exists                                                                                                                                                                                                                                                                         |
+| boolean isDirectory(Path p, LinkOption... o)                                                                              | Checks if the path points to a directory                                                                                                                                                                                                                                                          |
+| boolean isRegularFile(Path p, LinkOption... o)                                                                            | Checks if the path points to a file                                                                                                                                                                                                                                                               |
+| boolean isSymbolicLink(Path p)                                                                                            | Checks if the path is a symbolic link                                                                                                                                                                                                                                                             |
+| boolean isHidden(Path p)                                                                                                  | Checks if the path has the attribute hidden                                                                                                                                                                                                                                                       |
+| boolean isReadable(Path p)                                                                                                | Checks if the path has the attribute readable                                                                                                                                                                                                                                                     |
+| boolean isWritable(Path p)                                                                                                | Checks if the path has the attribute writable                                                                                                                                                                                                                                                     |
+| boolean isExecutable(Path p)                                                                                              | Checks if the path has the attribute executable                                                                                                                                                                                                                                                   |
+| A readAttributes(Path p, Class<A> type, LinkOption... o)                                                                  | Gets a readonly view of the file or directory attributes. The type can be used to request Basic, Windows or Linux specific attributes                                                                                                                                                             |
+| A getFileAttributesView(Path p, Class<A> type, LinkOption... o)                                                           | Gets a view of the file or directory attributes that can be used to update these attributes. The type can be used to request Basic, Windows or Linux specific attributes                                                                                                                          |
+| FileTime getLastModifiedTime(Path p, LinkOption... o) throws IOException                                                  | Gets the time since it was last modified                                                                                                                                                                                                                                                          |
+| long size(Path p) throws IOException                                                                                      | Gets the number of bytes in a file                                                                                                                                                                                                                                                                |
+| Steam<Path> list(Path p) throws IOException                                                                               | Gets a stream of the content in the directory                                                                                                                                                                                                                                                     |
+| Steam<Path> walk(Path p, FileVisitOption... o) throws IOException                                                         | Get a stream that contains a recursive depth-first list of all files in the directory. Does not follow symbolic links by default. If a loop exists on the walk method throws FileSystemLoopException.                                                                                             |
+| Steam<Path> walk(Path p, int maxDepth, FileVisitOption... o) throws IOException                                           | Get a stream that contains a recursive depth-first list of all files in the directory. Does not follow symbolic links by default. If a loop exists on the walk method throws FileSystemLoopException. Only accesses files with depth of maxDepth                                                  |
+| Steam<Path> find(Path p, int maxDepth, BiPredicate<Path, BasicFileAttributes> p, FileVisitOption... o) throws IOException | Get a stream that contains a recursive depth-first list of all files in the directory. Filters the contents of the stream by predicate. Does not follow symbolic links by default. If a loop exists on the walk method throws FileSystemLoopException. Only accesses files with depth of maxDepth |
+| Path createDirectory(Path p, FileAttribute... a) throws IOException                                                       | Creates the directory                                                                                                                                                                                                                                                                             |
+| Path createDirectories(Path p, FileAttribute... a) throws IOException                                                     | Creates the directory, recursively                                                                                                                                                                                                                                                                |
+| Path move(Path src, Path dest, CopyOption... o) throws IOException                                                        | Renames the file                                                                                                                                                                                                                                                                                  |
+| Path copy(Path src, Path dest, CopyOption... o) throws IOException                                                        | Copies the file, not recursive                                                                                                                                                                                                                                                                    |
+| Path copy(InputStream src, Path dest, CopyOption... o) throws IOException                                                 | Copies the file, not recursive                                                                                                                                                                                                                                                                    |
+| Path copy(Path src, OutputStream dest, CopyOption... o) throws IOException                                                | Copies the file, not recursive                                                                                                                                                                                                                                                                    |
+| boolean isSameFile(Path src, Path dest) throws IOException                                                                | Checks if two files are physically the same. Throws exception if one of the two files do not exists, but always returns true if both paths are equal                                                                                                                                              |
+| int mismatch(Path src, Path dest) throws IOException                                                                      | Returns -1 if the file contents are the same, returns the first index where the files differ if they mismatch                                                                                                                                                                                     |
+| String readString(Path src) throws IOException                                                                            | Returns the entire file a string                                                                                                                                                                                                                                                                  |
+| Path writeString(Path dest, CharSequence s, OpenOptions... o) throws IOException                                          | Writes the entire string to file                                                                                                                                                                                                                                                                  |
+| Path write(Path dest, byte[] s, OpenOptions... o) throws IOException                                                      | Writes the entire byte array to file                                                                                                                                                                                                                                                              |
+| Path write(Path dest, List<String> s, OpenOptions... o) throws IOException                                                | Writes the entire string line list to file                                                                                                                                                                                                                                                        |
+| byte[] readAllBytes(Path src) throws IOException                                                                          | Returns the entire file a byte array                                                                                                                                                                                                                                                              |
+| List<String> readAllLines(Path src) throws IOException                                                                    | Returns the entire file a list of lines                                                                                                                                                                                                                                                           |
+| Stream<String> lines(Path src) throws IOException                                                                         | Returns the entire file a stream of lines (should be used in try with resources block)                                                                                                                                                                                                            |
+| BufferedReader newBufferedReader(Path src) throws IOException                                                             | Creates a new buffered reader                                                                                                                                                                                                                                                                     |
+| BufferedWriter newBufferedWriter(Path dest) throws IOException                                                            | Creates a new buffered writer                                                                                                                                                                                                                                                                     |
 
 
 
@@ -377,5 +505,63 @@ Interfaces: None
 | PrintStream          | High   | Writes formatted representations of Java objects to binary stream    |
 | PrintWriter          | High   | Writes formatted representations of Java objects to character stream |
 
+### InputStream
+
+| Method                                     | Description                                                                                                                                            |
+|--------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| int read()                                 | Reads a byte, or returns -1 if no byte is available                                                                                                    |
+| int read(byte[] b)                         | Reads bytes into buffer, returns number of bytes read                                                                                                  |
+| int read(byte[] b, int offset, int length) | Reads bytes into buffer, starting at offset and ending at length, returns number of bytes read                                                         |
+| byte[] readAllBytes()                      | Reads all bytes into byte array                                                                                                                        |
+| void close()                               | Closes the resource, and flushes the data                                                                                                              |
+| boolean markSupported()                    | Checks if the mark feature is supported                                                                                                                |
+| void mark(int readLimit)                   | Sets the point for the stream to be reset to                                                                                                           |
+| void reset()                               | Resets the stream to the marked points, might throw exception if the amount of bytes that have been processed since mark is larger than the read limit |
+| long skip(long n)                          | Skips n amount of bytes                                                                                                                                |
+
+### Reader
+
+| Method                                     | Description                                                                                    |
+|--------------------------------------------|------------------------------------------------------------------------------------------------|
+| int read()                                 | Reads a byte, or returns -1 if no byte is available                                            |
+| int read(char[] b)                         | Reads chars into buffer, returns number of chars read                                          |
+| int read(char[] b, int offset, int length) | Reads chars into buffer, starting at offset and ending at length, returns number of chars read |
+| void close()                               | Closes the resource, and flushes the data                                                      |
+
+### OutputStream
+
+| Method                                      | Description                                                           |
+|---------------------------------------------|-----------------------------------------------------------------------|
+| void write(int b)                           | Writes a byte                                                         |
+| void write(byte[] b)                        | Writes byte array                                                     |
+| void read(byte[] b, int offset, int length) | Writes bytes from byte array, starting at offset and ending at length |
+| void flush()                                | Tells the OS to actually write data from RAM into the file            |
+| void close()                                | Closes the resource, and flushes the data                             |
+
+### Writer
+
+| Method                                      | Description                                                           |
+|---------------------------------------------|-----------------------------------------------------------------------|
+| void write(int b)                           | Writes a byte                                                         |
+| void write(char[] b)                        | Writes char array                                                     |
+| void read(char[] b, int offset, int length) | Writes chars from byte array, starting at offset and ending at length |
+| void flush()                                | Tells the OS to actually write data from RAM into the file            |
+| void close()                                | Closes the resource, and flushes the data                             |
+
+
+### Buffered
+
+Buffered class extend the classes above, and thus have access to all of their methods
+
+String readLine() for BufferedReader
+void write(String line) for BufferedWriter
+void newLine() for BufferedWriter
+
+### ObjectStreams
+
+The object streams have two important methods
+
+Object readObject() throws IOException, ClassNotFoundException
+void writeObject(Object o) throws IOException
 
 
