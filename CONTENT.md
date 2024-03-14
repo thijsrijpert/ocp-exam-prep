@@ -144,6 +144,84 @@ All of these methods have primitive variations
 | double pow(double base, double exponent) | Does base ^ exponent. Gets the power of base.              |
 | double random()                          | Gets a random number greater than 0 and smaller than 1     |
 
+### Date & Time API
+
+The modification methods are called plusXXXX() and minusXXXX().
+
+#### LocalDate
+
+toString format: `yyyy-MM-dd`
+
+| Method                                       | Description                                                               |
+|----------------------------------------------|---------------------------------------------------------------------------|
+| static LocalDate now()                       | Gets the current date                                                     |
+| static LocalDate of(int y, int M, int d)     | Builds the date                                                           |
+| static LocalDate of(int y, Month M, int d)   | Builds the date                                                           |
+| boolean isBefore(LocalDate d)                | True if the value is earlier than the parameter                           |
+| boolean isAfter(LocalDate d)                 | True if the value is later than the parameter                             |
+| LocalDate plus(long amount, TemporalUnit u)  | Returns the new value, throws exception if units lower than a day is used |
+| LocalDate minus(long amount, TemporalUnit u) | Returns the new value, throws exception if units lower than a day is used |
+| LocalDate plus(TemporalAmount amount)        | Returns the new value, throws exception if duration is supplied           |
+| LocalDate minus(long amount, TemporalUnit u) | Returns the new value, throws exception if duration is supplied           |
+
+#### LocalTime
+
+toString format: `HH:mm:ss.SSS`
+
+| Method                                             | Description                                                                    |
+|----------------------------------------------------|--------------------------------------------------------------------------------|
+| static LocalTime now()                             | Gets the current time                                                          |
+| static LocalTime of(int h, int m)                  | Builds the time                                                                |
+| static LocalTime of(int h, int m, int s)           | Builds the time                                                                |
+| static LocalTime of(int h, int m, int s, int nano) | Builds the time                                                                |
+| boolean isBefore(LocalTime d)                      | True if the value is earlier than the parameter                                |
+| boolean isAfter(LocalTime d)                       | True if the value is later than the parameter                                  |
+| LocalDate plus(long amount, TemporalUnit u)        | Returns the new value, throws exception if units larger than half days is used |
+| LocalDate minus(long amount, TemporalUnit u)       | Returns the new value, throws exception if units larger than half days is used |
+| LocalDate plus(TemporalAmount amount)              | Returns the new value, throws exception if period is supplied                  |
+| LocalDate minus(long amount, TemporalUnit u)       | Returns the new value, throws exception if period is supplied                  |
+
+#### LocalDateTime
+
+toString format: `yyyy-MM-ddTHH:mm:ss.SSS`
+
+| Method                                                                         | Description                                     |
+|--------------------------------------------------------------------------------|-------------------------------------------------|
+| static LocalDateTime now()                                                     | Gets the current date & time                    |
+| static LocalDateTime of(int y, Month M, int d, int h, int m)                   | Builds the datetime                             |
+| static LocalDateTime of(int y, Month M, int d, int h, int m, int s)            | Builds the datetime                             |
+| static LocalDateTime of(int y, Month M, int d, int h, int m, int s, int nanos) | Builds the datetime                             |
+| static LocalDateTime of(int y, int M, int d, int h, int m)                     | Builds the datetime                             |
+| static LocalDateTime of(int y, int M, int d, int h, int m, int s)              | Builds the datetime                             |
+| static LocalDateTime of(int y, int M, int d, int h, int m, int s, int nanos)   | Builds the datetime                             |
+| static LocalDateTime of(LocalDate d, LocalTime t)                              | Builds the datetime                             |
+| boolean isBefore(LocalDateTime d)                                              | True if the value is earlier than the parameter |
+| boolean isAfter(LocalDateTime d)                                               | True if the value is later than the parameter   |
+| LocalDate plus(long amount, TemporalUnit u)                                    | Returns the new value                           |
+| LocalDate minus(long amount, TemporalUnit u)                                   | Returns the new value                           |
+| LocalDate plus(TemporalAmount amount)                                          | Returns the new value                           |
+| LocalDate minus(long amount, TemporalUnit u)                                   | Returns the new value                           |
+
+#### ZonedDateTime
+
+toString format: `yyyy-MM-ddTHH:mm:ss.SSS xxx[VV]`
+
+| Method                                                                                  | Description                                     |
+|-----------------------------------------------------------------------------------------|-------------------------------------------------|
+| static ZonedDateTime now()                                                              | Gets the current date & time                    |
+| static ZonedDateTime of(int y, int M, int d, int h, int m, int s, int nanos, ZoneId id) | Builds the zoned datetime                       |
+| static ZonedDateTime of(LocalDate d, LocalTime t, ZoneId id)                            | Builds the zoned datetime                       |
+| static ZonedDateTime of(LocalDateTime dt, ZoneId id)                                    | Builds the zoned datetime                       |
+| boolean isBefore(ZonedDateTime d)                                                       | True if the value is earlier than the parameter |
+| boolean isAfter(ZonedDateTime d)                                                        | True if the value is later than the parameter   |
+| LocalDate plus(long amount, TemporalUnit u)                                             | Returns the new value                           |
+| LocalDate minus(long amount, TemporalUnit u)                                            | Returns the new value                           |
+| LocalDate plus(TemporalAmount amount)                                                   | Returns the new value                           |
+| LocalDate minus(long amount, TemporalUnit u)                                            | Returns the new value                           |
+| ZoneOffset getOffset()                                                                  | Returns the timezone                            |
+
+
+
 ## Chapter 10
 
 ### Table 10.1
