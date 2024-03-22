@@ -2,73 +2,6 @@
 
 Overview of the tables you should know for the OCP Java exam
 
-<!-- TOC -->
-* [Oracle Certified Professional Java SE 17 Developer Tables](#oracle-certified-professional-java-se-17-developer-tables)
-  * [Chapter 4](#chapter-4)
-    * [String](#string)
-    * [Format characters](#format-characters)
-    * [StringBuilder](#stringbuilder)
-    * [Arrays (All static)](#arrays-all-static)
-    * [Math API (All static)](#math-api-all-static)
-    * [Date & Time API](#date--time-api)
-      * [LocalDate](#localdate)
-      * [LocalTime](#localtime)
-      * [LocalDateTime](#localdatetime)
-      * [ZonedDateTime](#zoneddatetime)
-  * [Chapter 9](#chapter-9)
-    * [Factory methods](#factory-methods)
-    * [List methods](#list-methods)
-    * [Queue (FIFO) methods](#queue-fifo-methods)
-    * [Deque (Double Ended) methods](#deque-double-ended-methods)
-    * [Deque (Stack / LIFO) methods](#deque-stack--lifo-methods)
-    * [Map methods](#map-methods)
-    * [Comparator (static)](#comparator-static)
-    * [Comparator (non-static)](#comparator-non-static)
-    * [Comparator (static)](#comparator-static-1)
-  * [Chapter 10](#chapter-10)
-    * [Table 10.1](#table-101)
-    * [Table 10.3](#table-103)
-    * [Table 10.4](#table-104)
-    * [Table 10.5](#table-105)
-    * [Table 10.6 / 10.7](#table-106--107)
-    * [Table 10.9](#table-109)
-    * [Table 10.10](#table-1010)
-  * [Chapter 12](#chapter-12)
-    * [javac](#javac)
-    * [java](#java)
-    * [jar](#jar)
-    * [jdeps](#jdeps)
-    * [jlink](#jlink)
-  * [Chapter 13](#chapter-13)
-    * [Runnable](#runnable)
-    * [Callable](#callable)
-    * [Table 13.1 (Executor Service)](#table-131-executor-service)
-    * [Table 13.2 (Future)](#table-132-future)
-    * [Table 13.3 (TimeUnit)](#table-133-timeunit)
-    * [Table 13.4 (ScheduledExecutorService)](#table-134-scheduledexecutorservice)
-    * [Table 13.5 (Executors)](#table-135-executors)
-    * [Table 13.7 (Atomic)](#table-137-atomic)
-    * [Table 13.8 (Locking)](#table-138-locking)
-    * [Table 13.9 (ConcurrentCollections)](#table-139-concurrentcollections)
-    * [Table 13.10 (Collections)](#table-1310-collections)
-  * [Chapter 14 (I/O)](#chapter-14-io)
-    * [File](#file)
-    * [Path](#path)
-    * [Files (All Static)](#files-all-static)
-    * [Optional Parameters](#optional-parameters)
-      * [LinkOption](#linkoption)
-      * [StandardCopyOption](#standardcopyoption)
-      * [StandardOpenOption](#standardopenoption)
-      * [FileVisitOption](#filevisitoption)
-    * [File streams](#file-streams)
-    * [InputStream](#inputstream)
-    * [Reader](#reader)
-    * [OutputStream](#outputstream)
-    * [Writer](#writer)
-    * [Buffered](#buffered)
-    * [ObjectStreams](#objectstreams)
-<!-- TOC -->
-
 ## Chapter 4
 
 ### String
@@ -342,8 +275,6 @@ toString format: `yyyy-MM-ddTHH:mm:ss.SSS xxx[VV]`
 | reverseOrder()                      | Sorts in the reverse of naturalOrder()                |
 
 ### Comparator (non-static)
-
-### Comparator (static)
 
 | Method                                  | Description                                                                    |
 |-----------------------------------------|--------------------------------------------------------------------------------|
