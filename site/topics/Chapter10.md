@@ -73,12 +73,12 @@
 
 ## Table 10.6 / 10.7
 
-| Source       | Create Stream<T>              | Create DoubleStream                 | Create IntStream                | Create LongStream                 |
-|--------------|-------------------------------|-------------------------------------|---------------------------------|-----------------------------------|
-| Stream<T>    | map(Function<T, R> f)         | mapToDouble(ToDoubleFunction<T> f)  | mapToInt(ToIntFunction<T> f)    | mapToLong(ToLongFunction<T> f)    |
-| DoubleStream | mapToObj(DoubleFunction<R> f) | map(DoubleUnaryOperator f)          | mapToInt(DoubleToIntFunction f) | mapToLong(DoubleToLongFunction f) |
-| IntStream    | mapToObj(IntFunction<R> f)    | mapToDouble(IntToDoubleFunction f)  | map(IntUnaryOperator f)         | mapToLong(IntToLongFunction f)    |
-| LongStream   | mapToObj(LongFunction<R> f)   | mapToDouble(LongToDoubleFunction f) | mapToInt(LongToIntFunction f)   | map(LongUnaryOperator f)          |
+| Source       | Create Stream                   | Create DoubleStream                    | Create IntStream                  | Create LongStream                   |
+|--------------|---------------------------------|----------------------------------------|-----------------------------------|-------------------------------------|
+| Stream       | `map(Function<T, R> f)`         | `mapToDouble(ToDoubleFunction<T> f)`   | `mapToInt(ToIntFunction<T> f)`    | `mapToLong(ToLongFunction<T> f)`    |
+| DoubleStream | `mapToObj(DoubleFunction<R> f)` | `map(DoubleUnaryOperator f)`           | `mapToInt(DoubleToIntFunction f)` | `mapToLong(DoubleToLongFunction f)` |
+| IntStream    | `mapToObj(IntFunction<R> f)`    | `mapToDouble(IntToDoubleFunction f)`   | `map(IntUnaryOperator f)`         | `mapToLong(IntToLongFunction f)`    |
+| LongStream   | `mapToObj(LongFunction<R> f)`   | `mapToDouble(LongToDoubleFunction f)`  | `mapToInt(LongToIntFunction f)`   | `map(LongUnaryOperator f) `         |
 
 ## Table 10.9
 
