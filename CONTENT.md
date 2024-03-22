@@ -33,6 +33,12 @@ Overview of the tables you should know for the OCP Java exam
     * [Table 10.6 / 10.7](#table-106--107)
     * [Table 10.9](#table-109)
     * [Table 10.10](#table-1010)
+  * [Chapter 12](#chapter-12)
+    * [javac](#javac)
+    * [java](#java)
+    * [jar](#jar)
+    * [jdeps](#jdeps)
+    * [jlink](#jlink)
   * [Chapter 13](#chapter-13)
     * [Runnable](#runnable)
     * [Callable](#callable)
@@ -339,13 +345,13 @@ toString format: `yyyy-MM-ddTHH:mm:ss.SSS xxx[VV]`
 
 ### Comparator (static)
 
-| Method                                  | Description                                                                 |
-|-----------------------------------------|-----------------------------------------------------------------------------|
-| thenComparing(Function f)               | If the previous comparator returns 0, returns the result of this comparator |
-| thenComparingDouble(ToDoubleFunction f) | If the previous comparator returns 0, returns the result of this comparator |
-| thenComparingInt(ToIntFunction f)       | If the previous comparator returns null, returns the result of this comparator                      |
-| thenComparingLong(ToLongFunction f)     | Compares the collection by the result of the function                       |
-| reversed()                              | Reverses the order of the sort                                              |
+| Method                                  | Description                                                                    |
+|-----------------------------------------|--------------------------------------------------------------------------------|
+| thenComparing(Function f)               | If the previous comparator returns 0, returns the result of this comparator    |
+| thenComparingDouble(ToDoubleFunction f) | If the previous comparator returns 0, returns the result of this comparator    |
+| thenComparingInt(ToIntFunction f)       | If the previous comparator returns null, returns the result of this comparator |
+| thenComparingLong(ToLongFunction f)     | Compares the collection by the result of the function                          |
+| reversed()                              | Reverses the order of the sort                                                 |
 
 
 ## Chapter 10
@@ -470,10 +476,70 @@ toString format: `yyyy-MM-ddTHH:mm:ss.SSS xxx[VV]`
 | toMap(Function k, Function v, BinaryOperator m)             | Use function k to determine the key, and function v to determine the value. Use operator m to resolve duplicates                                                  | Map<K, V>                           |
 | toMap(Function k, Function v, BinaryOperator m, Supplier s) | Use function k to determine the key, and function v to determine the value. Use operator m to resolve duplicates. Use supplier s to set the type of map used.     | Map<K, V>                           |
 
+## Chapter 12
+
+### javac
+
+| Option        | Description                                                                            |
+|---------------|----------------------------------------------------------------------------------------|
+| -cp           | Class Path (classes that are required to be known, has access to module path)          |
+| --class-path  | Class Path (classes that are required to be known, has access to module path)          |
+| -classpath    | Class Path (classes that are required to be known, has access to module path)          |
+| -d            | Directory (place to dump the generated files)                                          |
+| -p            | Module Path (path to place modular jars / classes, does not have access to classpath)  |
+| --module-path | Module Path (path to place modular jars / classes, does not have access to classpath)  |
+
+### java
+
+| Option                   | Description                                                                                      |
+|--------------------------|--------------------------------------------------------------------------------------------------|
+| -cp                      | Class Path (classes that are required to be known, has access to module path)                    |
+| --class-path             | Class Path (classes that are required to be known, has access to module path)                    |
+| -classpath               | Class Path (classes that are required to be known, has access to module path)                    |
+| -d                       | Describes the module, indicates the packages in the module, the exports and the required modules |
+| --describe-module        | Describes the module, indicates the packages in the module, the exports and the required modules |
+| -p                       | Module Path (path to place modular jars / classes, does not have access to classpath)            |
+| --module-path            | Module Path (path to place modular jars / classes, does not have access to classpath)            |
+| --list-modules           | Lists observable modules without running program                                                 |
+| --show-module-resolution | Shows modules when running program                                                               |
+
+### jar
+
+| Option            | Description                                                                                      |
+|-------------------|--------------------------------------------------------------------------------------------------|
+| -c                | Creates a new jar file                                                                           |
+| --create          | Creates a new jar file                                                                           |
+| -v                | Prints details when creating the jar file                                                        |
+| --verbose         | Prints details when creating the jar file                                                        |
+| -f                | JAR filename                                                                                     |
+| --file            | JAR filename                                                                                     |
+| -C                | Set the working directory                                                                        |
+| -d                | Describes the module, indicates the packages in the module, the exports and the required modules |
+| --describe-module | Describes the module, indicates the packages in the module, the exports and the required modules |
+
+### jdeps
+
+jdeps creates a list of packages (and thus modules) the application depends on
+
+| Option          | Description                                                                               |
+|-----------------|-------------------------------------------------------------------------------------------|
+| --module-path   | Module Path (path to place modular jars / classes, does not have access to classpath)     |
+| -s              | Summarizes output, only output module dependencies (don't include the packages)           |
+| -summary        | Summarizes output, only output module dependencies (don't include the packages)           |
+| --jdk-internals | Outputs any dependencies on internal jdk apis, and a guide on how to mitigate this issue  |
+| -jdkinternals   | Outputs any dependencies on internal jdk apis, and a guide on how to mitigate this issue  |
+
+### jlink
+| Option        | Description                                                                             |
+|---------------|-----------------------------------------------------------------------------------------|
+| --module-path | Module Path (path to place modular jars / classes, does not have access to classpath)   |
+| --add-modules | The modules to include in this jar (also includes the dependencies of supplied modules) |
+| --output      | Output directory                                                                        |
+
 ## Chapter 13
 
-new Thread(runnable).start() ->  executes task on new thread
-new Thread(runnable).run() ->  executes task on this thread
+new Thread(runnable).start() ->  executes task on. 
+new thread(runnable).run() ->  executes task on this thread.
 
 ### Runnable
 
