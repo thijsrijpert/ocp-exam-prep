@@ -25,22 +25,22 @@
 
 ## Table 10.4
 
-| Method                                                                  | What happens for infinite streams | Return value | Reduction | Notes                                       |
-|-------------------------------------------------------------------------|-----------------------------------|--------------|-----------|---------------------------------------------|
-| count()                                                                 | Does not terminate                | long         | Yes       |                                             |
-| min(Comparator c)                                                       | Does not terminate                | Optional     | Yes       |                                             |
-| max(Comparator c)                                                       | Does not terminate                | Optional     | Yes       |                                             |
-| findAny()                                                               | Terminates                        | Optional     | No        |                                             |
-| findFirst()                                                             | Terminates                        | Optional     | No        |                                             |
-| allMatch(Predicate p)                                                   | Sometimes terminates              | boolean      | No        |                                             |
-| anyMatch(Predicate p)                                                   | Sometimes terminates              | boolean      | No        |                                             |
-| noneMatch(Predicate p)                                                  | Sometimes terminates              | boolean      | No        |                                             |
-| forEach(Consumer c)                                                     | Does not terminate                | void         | No        |                                             |
-| reduce(BinaryOperator o)                                                | Does not terminate                | Optional     | Yes       |                                             |
-| reduce(T identity, BinaryOperator o)                                    | Does not terminate                | T            | Yes       |                                             |
-| reduce(T identity, BinaryOperator accumulator, BinaryOperator combiner) | Does not terminate                | T            | Yes       | For reducing to a different type / parallel |
-| collect(Supplier<T> s, BiConsumer accumulator, BiConsumer combiner)     | Does not terminate                | T            | Yes       |                                             |
-| collect(Collector c)                                                    | Does not terminate                | T            | Yes       |                                             |
+| Method                                                                    | What happens for infinite streams | Return value | Reduction | Notes                                       |
+|---------------------------------------------------------------------------|-----------------------------------|--------------|-----------|---------------------------------------------|
+| count()                                                                   | Does not terminate                | long         | Yes       |                                             |
+| min(Comparator c)                                                         | Does not terminate                | Optional     | Yes       |                                             |
+| max(Comparator c)                                                         | Does not terminate                | Optional     | Yes       |                                             |
+| findAny()                                                                 | Terminates                        | Optional     | No        |                                             |
+| findFirst()                                                               | Terminates                        | Optional     | No        |                                             |
+| allMatch(Predicate p)                                                     | Sometimes terminates              | boolean      | No        |                                             |
+| anyMatch(Predicate p)                                                     | Sometimes terminates              | boolean      | No        |                                             |
+| noneMatch(Predicate p)                                                    | Sometimes terminates              | boolean      | No        |                                             |
+| forEach(Consumer c)                                                       | Does not terminate                | void         | No        |                                             |
+| reduce(BinaryOperator o)                                                  | Does not terminate                | Optional     | Yes       |                                             |
+| `reduce(T identity, BinaryOperator o)`                                    | Does not terminate                | T            | Yes       |                                             |
+| `reduce(T identity, BinaryOperator accumulator, BinaryOperator combiner)` | Does not terminate                | T            | Yes       | For reducing to a different type / parallel |
+| `collect(Supplier<T> s, BiConsumer accumulator, BiConsumer combiner)`     | Does not terminate                | T            | Yes       |                                             |
+| collect(Collector c)                                                      | Does not terminate                | T            | Yes       |                                             |
 
 ## Table 10.5
 
@@ -49,9 +49,9 @@
 | OptionalDouble average()                      | IntStream        | Arithmetic mean                                              |
 | OptionalDouble average()                      | LongStream       | Arithmetic mean                                              |
 | OptionalDouble average()                      | DoubleStream     | Arithmetic mean                                              |
-| Stream<T> boxed()                             | IntStream        | Convert to Object Stream                                     |
-| Stream<T> boxed()                             | LongStream       | Convert to Object Stream                                     |
-| Stream<T> boxed()                             | DoubleStream     | Convert to Object Stream                                     |
+| `Stream<T> boxed()`                           | IntStream        | Convert to Object Stream                                     |
+| `Stream<T> boxed()`                           | LongStream       | Convert to Object Stream                                     |
+| `Stream<T> boxed()`                           | DoubleStream     | Convert to Object Stream                                     |
 | OptionalInt max()                             | IntStream        | Max element of the stream (No Comparator required)           |
 | OptionalLong max()                            | LongStream       | Max element of the stream (No Comparator required)           |
 | OptionalDouble max()                          | DoubleStream     | Max element of the stream (No Comparator required)           |
@@ -82,11 +82,11 @@
 
 ## Table 10.9
 
-| Method                               | Notes                                                                                                                                                               |
-|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Spliterator<T> trySplit()            | Returns a spliterator containing ideally half the data, which is removed from the current spliterator. Will return null when the spliterator is no longer splitable |
-| void forEachRemaining(Consumer<T> c) | Process each remaining element                                                                                                                                      |
-| boolean tryAdvance(Consumer<T> c)    | Process a single element if any remain. Returns true if it processed any element                                                                                    |
+| Method                                  | Notes                                                                                                                                                               |
+|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Spliterator<T> trySplit()`             | Returns a spliterator containing ideally half the data, which is removed from the current spliterator. Will return null when the spliterator is no longer splitable |
+| `void forEachRemaining(Consumer<T> c)`  | Process each remaining element                                                                                                                                      |
+| `boolean tryAdvance(Consumer<T> c)`     | Process a single element if any remain. Returns true if it processed any element                                                                                    |
 
 ## Table 10.10
 
@@ -97,14 +97,14 @@
 | averagingLong(ToLongFunction f)                             | Calculate average                                                                                                                                                 | Double                              |
 | counting()                                                  | Counts number of elements                                                                                                                                         | Long                                |
 | filtering(Predicate p, Collector c)                         | Filters before running the downstream collector                                                                                                                   | R                                   |
-| groupingBy(Function f)                                      | Creates a Map with List as value grouping the values by the result of the function                                                                                | Map<K, List<T>>                     |
+| groupingBy(Function f)                                      | Creates a Map with List as value grouping the values by the result of the function                                                                                | `Map<K, List<T>>`                   |
 | groupingBy(Function f, Collector dc)                        | Creates a Map grouping the values by the result of the function. Uses the dc to determine the value (eg. use set vs list vs concat)                               | Map<K, T>                           |
 | groupingBy(Function f, Supplier s, Collector dc)            | Creates a Map grouping the values by the result of the function. Use s to set the type of map. Uses the dc to determine the value (eg. use set vs list vs concat) | Map<K, T>                           |
 | joining(CharSequence cs)                                    | Creates a single string using a delimiter specified in cs.                                                                                                        | String                              |
 | maxBy(Comparator c)                                         | Find the largest element                                                                                                                                          | Optional                            |
 | minBy(Comparator c)                                         | Find the smallest element                                                                                                                                         | Optional                            |
 | mapping(Function f, Collector dc)                           | Adds another level of collectors                                                                                                                                  | Collector                           |
-| partitioningBy(Predicate p)                                 | Creates map grouping by specified predicate                                                                                                                       | Map<Boolean, List<T>>               |
+| partitioningBy(Predicate p)                                 | Creates map grouping by specified predicate                                                                                                                       | `Map<Boolean, List<T>>`             |
 | partitioningBy(Predicate p, Collector dc)                   | Creates map grouping by specified predicate. Uses the dc to determine the value (eg. use set vs list vs concat)                                                   | Map<Boolean, T>                     |
 | summarizingDouble(ToDoubleFunction f)                       | Calculate the statistics of this stream (eg. min, max, sum, count)                                                                                                | DoubleSummaryStatistics             |
 | summarizingInt(ToIntFunction f)                             | Calculate the statistics of this stream (eg. min, max, sum, count)                                                                                                | IntSummaryStatistics                |
