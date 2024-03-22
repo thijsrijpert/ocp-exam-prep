@@ -23,16 +23,16 @@ public interface Callable<V> {
 
 ## Table 13.1 (Executor Service)
 
-| Method                                                        | Description                                                                                                             |
-|---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
-| void execute(Runnable r)                                      | Executes Runnable task at some point in the future                                                                      |
-| Future<?> submit(Runnable r)                                  | Executes Runnable task at some point in the future, returns a Future representing the task. future.get() is always null |
-| Future<T> submit(Callable<T> r)                               | Executes Callable task at some point in the future, returns a Future representing the task                              |
-| List<Future<T> invokeAll(Collection<? extends Callable<T>> c) | Executes Callable tasks and waits for them to complete, returns a list of Futures representing the tasks                |
-| T invokeAny(Collection<? extends Callable<T>> c)              | Executes Callable tasks and waits for at least one to complete                                                          |
-| void shutdown()                                               | Don´t accept any new tasks, execute all accepted tasks before terminating                                               |
-| void shutdownNow()                                            | Don´t accept any new tasks, try to terminate all accepted and running tasks                                             |
-| void awaitTermination(long timeout, TimeUnit u)               | Wait for the specified timeout till all tasks are executed before terminating, terminates sooner if all tasks are done  |
+| Method                                                          | Description                                                                                                             |
+|-----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| void execute(Runnable r)                                        | Executes Runnable task at some point in the future                                                                      |
+| `Future<?> submit(Runnable r)`                                  | Executes Runnable task at some point in the future, returns a Future representing the task. future.get() is always null |
+| `Future<T> submit(Callable<T> r)`                               | Executes Callable task at some point in the future, returns a Future representing the task                              |
+| `List<Future<T> invokeAll(Collection<? extends Callable<T>> c)` | Executes Callable tasks and waits for them to complete, returns a list of Futures representing the tasks                |
+| `T invokeAny(Collection<? extends Callable<T>> c)`              | Executes Callable tasks and waits for at least one to complete                                                          |
+| void shutdown()                                                 | Don´t accept any new tasks, execute all accepted tasks before terminating                                               |
+| void shutdownNow()                                              | Don´t accept any new tasks, try to terminate all accepted and running tasks                                             |
+| void awaitTermination(long timeout, TimeUnit u)                 | Wait for the specified timeout till all tasks are executed before terminating, terminates sooner if all tasks are done  |
 
 ## Table 13.2 (Future)
 
@@ -60,7 +60,7 @@ public interface Callable<V> {
 
 | Method                                                                        | Description                                                                                         |
 |-------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| schedule(Callable<V> c, long delay, TimeUnit u)                               | Creates and Executes task after delay                                                               |
+| `schedule(Callable<V> c, long delay, TimeUnit u)`                             | Creates and Executes task after delay                                                               |
 | schedule(Runnable c, long delay, TimeUnit u)                                  | Creates and Executes task after delay                                                               |
 | scheduleAtFixedRate(Runnable c, long initialDelay, long delay, TimeUnit u)    | Creates and Executes task at a fixed rate, after the initial delay is over                          |
 | scheduleWithFixedDelay(Runnable c, long initialDelay, long delay, TimeUnit u) | Creates and Executes task at a fixed rate, only creating a new task after the previous task is over |
