@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE instance-profile SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
-<instance-profile id="config"
+<instance-profile id="ocpexam"
                   name="OCP Java SE 17 Developer Tables"
                   start-page="README.md">
     <toc-element topic="README.md"/>
